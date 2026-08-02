@@ -1,34 +1,35 @@
 import * as React from "react"
 
+import { landingImages } from "@/lib/landing-images"
 import { cn } from "@/lib/utils"
 
 const SLIDE_INTERVAL_MS = 5200
 
 export const heroSlides = [
   {
-    src: "/images/hero/hero-warehouse.png",
+    src: landingImages.hero.logistics,
     label: "Logistics & warehousing",
-    alt: "Warehouse team confirming a shift handover",
+    alt: "Operations team coordinating deliveries and warehouse shifts",
   },
   {
-    src: "/images/hero/hero-events.png",
+    src: landingImages.hero.hospitalityBriefing,
     label: "Events & venues",
-    alt: "Event crew coordinating setup with a tablet",
+    alt: "Manager briefing a hospitality and events team before service",
   },
   {
-    src: "/images/hero/hero-workforce.png",
+    src: landingImages.hero.workforceEvening,
     label: "Multi-sector workforce",
-    alt: "Professionals across healthcare, construction, and hospitality",
+    alt: "Diverse professionals ready for evening and shift-based work",
   },
   {
-    src: "/images/hero/hero-hospitality.png",
+    src: landingImages.hero.hospitalityOperations,
     label: "Hospitality & front-of-house",
-    alt: "Hotel team welcoming a colleague on shift",
+    alt: "Hospitality manager coordinating staff from a tablet",
   },
   {
-    src: "/images/hero/hero-retail.png",
+    src: landingImages.hero.workerCafe,
     label: "Retail & local business",
-    alt: "Inclusive retail team greeting a confirmed worker",
+    alt: "Professional checking shift details on a phone outside a cafe",
   },
 ] as const
 

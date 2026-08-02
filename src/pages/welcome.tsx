@@ -1,19 +1,40 @@
 import {
   ArrowRightIcon,
   BadgeCheckIcon,
-  BriefcaseBusinessIcon,
   Clock3Icon,
+  EyeIcon,
   MapPinIcon,
   MenuIcon,
   PlayIcon,
   SparklesIcon,
   StarIcon,
-  UsersRoundIcon,
   ZapIcon,
 } from "lucide-react"
 
 import { AppLogo } from "@/components/app-logo"
 import { CompaniesSection } from "@/components/companies-section"
+import {
+  expandedFaqs,
+  LandingFinalConversionSection,
+  LandingPilotInterestSection,
+  LandingSocialImpactSection,
+} from "@/components/landing/landing-closing-sections"
+import {
+  LandingCompanyBenefitsSection,
+  LandingIndustriesSection,
+  LandingWorkerBenefitsSection,
+} from "@/components/landing/landing-industries-benefits"
+import {
+  LandingAiMatchingSection,
+  LandingShiftManagementSection,
+  LandingVerificationSection,
+} from "@/components/landing/landing-platform-features"
+import {
+  LandingPlatformJourneySection,
+  LandingProblemSection,
+} from "@/components/landing/landing-problem-journey"
+import { LandingHowItWorksSection } from "@/components/landing/landing-how-it-works"
+import { LandingTrustStrip } from "@/components/landing/landing-trust-strip"
 import { HeroImageShowcase, HeroSlideControls, useHeroSlides } from "@/components/hero-image-showcase"
 import { MobileAppShowcase } from "@/components/mobile-app-showcase"
 import { WorkersSection } from "@/components/workers-section"
@@ -54,9 +75,16 @@ const navigation = [
   { label: "For companies", href: "#companies" },
   { label: "For workers", href: "#workers" },
   { label: "How it works", href: "#how-it-works" },
+  { label: "Industries", href: "#industries" },
   { label: "Mobile app", href: "#mobile-app" },
   { label: "FAQ", href: "#faq" },
 ]
+
+const heroTrustIndicators = [
+  { icon: SparklesIcon, label: "AI-assisted matching" },
+  { icon: BadgeCheckIcon, label: "Verified professionals" },
+  { icon: EyeIcon, label: "Real-time shift management" },
+] as const
 
 const faqs = [
   {
@@ -81,10 +109,83 @@ const faqs = [
   },
 ]
 
+const allFaqs = [
+  ...faqs,
+  ...expandedFaqs.filter(
+    (item) => !faqs.some((existing) => existing.question === item.question)
+  ),
+]
+
+function ReadyCtaVectorBackground() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-xl" aria-hidden="true">
+      <svg
+        className="absolute inset-0 size-full"
+        viewBox="0 0 1120 280"
+        preserveAspectRatio="xMidYMid slice"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <linearGradient id="ready-cta-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="var(--brand-navy)" stopOpacity="0.05" />
+            <stop offset="50%" stopColor="var(--brand-orange)" stopOpacity="0.07" />
+            <stop offset="100%" stopColor="var(--brand-navy)" stopOpacity="0.04" />
+          </linearGradient>
+          <pattern id="ready-cta-dots" width="28" height="28" patternUnits="userSpaceOnUse">
+            <circle cx="1.5" cy="1.5" r="1" fill="var(--brand-navy)" fillOpacity="0.07" />
+          </pattern>
+        </defs>
+
+        <rect width="1120" height="280" fill="url(#ready-cta-gradient)" />
+        <rect width="1120" height="280" fill="url(#ready-cta-dots)" />
+
+        <path
+          d="M920 -20 L1120 120 L1120 -20 Z"
+          fill="var(--brand-orange)"
+          fillOpacity="0.1"
+          className="landing-companies-vector-drift"
+        />
+        <path
+          d="M0 220 Q280 180 560 210 T1120 190 L1120 280 L0 280 Z"
+          fill="var(--brand-navy)"
+          fillOpacity="0.04"
+        />
+
+        <g className="landing-companies-vector-pulse" opacity="0.5">
+          <circle cx="980" cy="72" r="44" fill="none" stroke="var(--brand-orange)" strokeOpacity="0.18" strokeWidth="1.5" />
+          <circle cx="980" cy="72" r="24" fill="var(--brand-orange)" fillOpacity="0.06" />
+        </g>
+
+        <g opacity="0.45">
+          <path
+            d="M80 140 C240 100, 360 170, 520 130 S760 150, 920 110"
+            fill="none"
+            stroke="var(--brand-blend)"
+            strokeWidth="2"
+            strokeDasharray="8 10"
+            className="landing-companies-vector-flow"
+          />
+          <circle cx="80" cy="140" r="5" fill="var(--brand-orange)" fillOpacity="0.55" />
+          <circle cx="360" cy="155" r="4" fill="var(--brand-navy)" fillOpacity="0.3" />
+          <circle cx="640" cy="135" r="5" fill="var(--brand-orange)" fillOpacity="0.4" />
+          <circle cx="920" cy="110" r="6" fill="var(--brand-navy)" fillOpacity="0.22" />
+        </g>
+
+        <g opacity="0.32" className="landing-companies-vector-drift-reverse">
+          <rect x="72" y="48" width="120" height="72" rx="12" fill="var(--brand-navy)" fillOpacity="0.06" />
+          <rect x="88" y="64" width="72" height="8" rx="4" fill="var(--brand-orange)" fillOpacity="0.22" />
+          <rect x="88" y="80" width="56" height="6" rx="3" fill="var(--brand-navy)" fillOpacity="0.14" />
+          <rect x="88" y="94" width="64" height="6" rx="3" fill="var(--brand-navy)" fillOpacity="0.1" />
+        </g>
+      </svg>
+    </div>
+  )
+}
+
 function MarketingHeader() {
   return (
     <header className="sticky top-0 z-40 border-b bg-background/85 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-6 px-4 sm:px-6 lg:px-8">
+      <div className="landing-container flex h-16 items-center gap-6">
         <AppLogo to="/" />
 
         <nav
@@ -282,7 +383,7 @@ export function WelcomePage() {
           />
           <div className="landing-grid pointer-events-none absolute inset-0 z-[1] opacity-[0.07]" />
 
-          <div className="relative z-10 mx-auto grid min-h-[calc(100svh-4rem)] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:gap-16 lg:px-8 lg:py-20">
+          <div className="landing-container relative z-10 grid min-h-[calc(100svh-4rem)] items-center gap-12 py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:gap-16 lg:py-20">
             <div className="landing-hero-copy flex max-w-3xl flex-col items-start gap-6">
               <Badge className="border-white/20 bg-white/12 text-white hover:bg-white/12">
                 <SparklesIcon data-icon="inline-start" />
@@ -290,13 +391,25 @@ export function WelcomePage() {
               </Badge>
               <div className="flex flex-col gap-5">
                 <h1 className="max-w-3xl text-5xl leading-[0.96] font-semibold tracking-[-0.045em] text-balance text-white sm:text-6xl lg:text-7xl">
-                  The right people, exactly when work happens.
+                  The right people,{" "}
+                  <span className="text-brand-orange">exactly when work happens.</span>
                 </h1>
                 <p className="max-w-2xl text-base leading-7 text-white/78 sm:text-lg">
                   Create shifts, reach qualified professionals, and manage every
                   confirmation from one calm, intelligent workspace.
                 </p>
               </div>
+              <ul className="flex flex-wrap gap-2" aria-label="Platform trust indicators">
+                {heroTrustIndicators.map((item) => (
+                  <li
+                    key={item.label}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-medium text-white/90"
+                  >
+                    <item.icon className="size-3.5 text-brand-orange" aria-hidden="true" />
+                    {item.label}
+                  </li>
+                ))}
+              </ul>
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                 <Button size="lg" className="bg-white text-brand-navy hover:bg-white/90" asChild>
                   <Link to="/register">
@@ -351,8 +464,10 @@ export function WelcomePage() {
           </div>
         </section>
 
+        <LandingTrustStrip />
+
         <section aria-label="Platform statistics" className="border-b">
-          <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-y px-4 sm:px-6 md:grid-cols-4 md:divide-y-0 lg:px-8">
+          <div className="landing-container grid grid-cols-2 divide-x divide-y md:grid-cols-4 md:divide-y-0">
             {[
               ["38 sec", "fastest confirmation"],
               ["24/7", "platform availability"],
@@ -372,61 +487,34 @@ export function WelcomePage() {
           </div>
         </section>
 
+        <LandingProblemSection />
+
         <MobileAppShowcase />
 
         <CompaniesSection />
 
+        <LandingCompanyBenefitsSection />
+
         <WorkersSection />
 
-        <section id="how-it-works" className="scroll-mt-20 py-24 sm:py-32">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <Reveal className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
-              <Badge variant="outline">How it works</Badge>
-              <h2 className="font-heading text-3xl font-semibold tracking-tight sm:text-5xl">
-                One connected workflow.
-              </h2>
-              <p className="text-base leading-7 text-muted-foreground">
-                Move from demand to a reliable, ready-to-work team in three
-                clear steps.
-              </p>
-            </Reveal>
+        <LandingWorkerBenefitsSection />
 
-            <div className="mt-14 grid gap-8 md:grid-cols-3">
-              {[
-                [
-                  "01",
-                  "Create",
-                  "Define the role, location, time, and requirements in a guided flow.",
-                ],
-                [
-                  "02",
-                  "Match",
-                  "Aplyk identifies and notifies the most relevant available professionals.",
-                ],
-                [
-                  "03",
-                  "Manage",
-                  "Confirm attendance, track time, and close the loop with performance feedback.",
-                ],
-              ].map(([step, title, description], index) => (
-                <Reveal key={step} delay={index * 100}>
-                  <div className="flex flex-col gap-4">
-                    <Badge variant="secondary">{step}</Badge>
-                    <h3 className="font-heading text-xl font-semibold">
-                      {title}
-                    </h3>
-                    <p className="text-sm leading-6 text-muted-foreground">
-                      {description}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
+        <LandingPlatformJourneySection />
+
+        <LandingAiMatchingSection />
+
+        <LandingVerificationSection />
+
+        <LandingShiftManagementSection />
+
+        <LandingIndustriesSection />
+
+        <LandingHowItWorksSection />
+
+        <LandingSocialImpactSection />
 
         <section className="border-y bg-muted/30 py-24">
-          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="landing-container">
             <Reveal>
               <Card>
                 <CardContent className="grid gap-10 pt-2 md:grid-cols-[1fr_auto] md:items-center">
@@ -459,8 +547,10 @@ export function WelcomePage() {
           </div>
         </section>
 
+        <LandingPilotInterestSection />
+
         <section id="faq" className="scroll-mt-20 py-24 sm:py-32">
-          <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.75fr_1.25fr] lg:px-8">
+          <div className="landing-container grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
             <Reveal className="flex flex-col items-start gap-4">
               <Badge variant="outline">Support & answers</Badge>
               <h2 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -473,7 +563,7 @@ export function WelcomePage() {
             </Reveal>
             <Reveal delay={100}>
               <Accordion type="single" collapsible defaultValue="item-0">
-                {faqs.map((faq, index) => (
+                {allFaqs.map((faq, index) => (
                   <AccordionItem key={faq.question} value={`item-${index}`}>
                     <AccordionTrigger>{faq.question}</AccordionTrigger>
                     <AccordionContent>
@@ -488,10 +578,15 @@ export function WelcomePage() {
           </div>
         </section>
 
-        <section className="px-4 pb-8 sm:px-6 lg:px-8">
-          <Reveal className="mx-auto max-w-7xl">
-            <Card>
-              <CardContent className="flex flex-col items-start gap-8 py-8 sm:p-12 lg:flex-row lg:items-center lg:justify-between">
+        <section className="pb-8">
+          <Reveal className="landing-container">
+            <Card className="relative overflow-hidden border border-brand-navy/10">
+              <ReadyCtaVectorBackground />
+              <div
+                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-card via-card/95 to-card/80"
+                aria-hidden="true"
+              />
+              <CardContent className="relative z-10 flex flex-col items-start gap-8 py-8 sm:p-12 lg:flex-row lg:items-center lg:justify-between">
                 <div className="max-w-2xl">
                   <Badge variant="secondary">Ready when you are</Badge>
                   <h2 className="mt-4 font-heading text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
@@ -517,11 +612,13 @@ export function WelcomePage() {
             </Card>
           </Reveal>
         </section>
+
+        <LandingFinalConversionSection />
       </main>
 
       <footer className="border-t">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.2fr_0.8fr_0.8fr] lg:px-8">
-          <div className="flex max-w-sm flex-col items-start gap-4">
+        <div className="landing-container grid gap-10 py-12 md:grid-cols-2 lg:grid-cols-4">
+          <div className="flex max-w-sm flex-col items-start gap-4 md:col-span-2 lg:col-span-1">
             <AppLogo to="/" />
             <p className="text-sm leading-6 text-muted-foreground">
               Intelligent temporary workforce operations for companies and
@@ -529,50 +626,62 @@ export function WelcomePage() {
             </p>
           </div>
           <div className="flex flex-col gap-3 text-sm">
-            <p className="font-medium">Platform</p>
-            <a
-              href="#companies"
-              className="text-muted-foreground hover:text-foreground"
-            >
-              For companies
+            <p className="font-medium">For companies</p>
+            <a href="#companies" className="text-muted-foreground hover:text-foreground">
+              Company features
             </a>
-            <a
-              href="#workers"
-              className="text-muted-foreground hover:text-foreground"
-            >
-              For workers
+            <a href="#company-benefits" className="text-muted-foreground hover:text-foreground">
+              Benefits
             </a>
-            <a
-              href="#faq"
-              className="text-muted-foreground hover:text-foreground"
-            >
-              FAQ
+            <a href="#industries" className="text-muted-foreground hover:text-foreground">
+              Industries
             </a>
+            <Link to="/register" className="text-muted-foreground hover:text-foreground">
+              Post a shift
+            </Link>
           </div>
           <div className="flex flex-col gap-3 text-sm">
-            <p className="font-medium">Account</p>
-            <Link
-              to="/login"
-              className="text-muted-foreground hover:text-foreground"
-            >
+            <p className="font-medium">For professionals</p>
+            <a href="#workers" className="text-muted-foreground hover:text-foreground">
+              Worker features
+            </a>
+            <a href="#worker-benefits" className="text-muted-foreground hover:text-foreground">
+              Benefits
+            </a>
+            <a href="#mobile-app" className="text-muted-foreground hover:text-foreground">
+              Mobile app
+            </a>
+            <Link to="/register" className="text-muted-foreground hover:text-foreground">
+              Find work
+            </Link>
+          </div>
+          <div className="flex flex-col gap-3 text-sm">
+            <p className="font-medium">Platform</p>
+            <a href="#how-it-works" className="text-muted-foreground hover:text-foreground">
+              How it works
+            </a>
+            <a href="#platform-journey" className="text-muted-foreground hover:text-foreground">
+              Full journey
+            </a>
+            <a href="#verification" className="text-muted-foreground hover:text-foreground">
+              Verification
+            </a>
+            <a href="#faq" className="text-muted-foreground hover:text-foreground">
+              FAQ
+            </a>
+            <Link to="/login" className="text-muted-foreground hover:text-foreground">
               Sign in
             </Link>
-            <Link
-              to="/register"
-              className="text-muted-foreground hover:text-foreground"
-            >
+            <Link to="/register" className="text-muted-foreground hover:text-foreground">
               Create account
             </Link>
-            <Link
-              to="/dashboard"
-              className="text-muted-foreground hover:text-foreground"
-            >
+            <Link to="/dashboard" className="text-muted-foreground hover:text-foreground">
               Open dashboard
             </Link>
           </div>
         </div>
         <Separator />
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+        <div className="landing-container flex flex-col gap-2 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 Aplyk. All rights reserved.</p>
           <p>Built for fast, reliable workforce operations.</p>
         </div>

@@ -12,7 +12,7 @@ import {
 import { Reveal } from "@/components/reveal"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { cn } from "@/lib/utils"
 import { Link } from "@/lib/router"
@@ -164,7 +164,7 @@ export function CompaniesSection() {
     <section id="companies" className="relative scroll-mt-20 overflow-hidden py-24 sm:py-32">
       <CompaniesVectorBackground />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="landing-container relative z-10">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.75fr)] lg:items-start lg:gap-14">
           <Reveal className="flex flex-col items-start gap-5">
             <Badge variant="outline" className="border-brand-navy/20 bg-card/80">

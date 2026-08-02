@@ -2,15 +2,7 @@ import * as React from "react"
 import type { FormEvent } from "react"
 import { toast } from "sonner"
 
-import { AuthCardBrand } from "@/components/auth-card-brand"
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
   Field,
@@ -127,27 +119,26 @@ export function RegisterPage() {
 
   if (registration) {
     return (
-      <Card>
-        <CardHeader className="text-center">
-          <AuthCardBrand />
-          <CardTitle className="text-xl">
+      <>
+        <div className="mb-6 text-center">
+          <p className="text-xs font-semibold tracking-[0.12em] text-brand-orange uppercase">
+            Almost there
+          </p>
+          <h1 className="mt-2 font-heading text-2xl font-semibold tracking-tight">
             {registration.canResendConfirmation
               ? "Account created"
               : "Confirm your email"}
-          </CardTitle>
-          <CardDescription>
+          </h1>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">
             {registration.message} Your registered email is{" "}
-            <span className="font-medium text-foreground">
-              {registration.email}
-            </span>
-            .
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-4">
+            <span className="font-medium text-foreground">{registration.email}</span>.
+          </p>
+        </div>
+        <div className="flex flex-col gap-4">
           <Button
             type="button"
             size="lg"
-            className="w-full"
+            className="w-full bg-brand-orange text-white hover:bg-brand-orange/90"
             onClick={() => void handleSignIn()}
           >
             Continue to sign in
@@ -156,32 +147,34 @@ export function RegisterPage() {
             Already confirmed?{" "}
             <button
               type="button"
-              className="font-medium text-foreground underline-offset-4 hover:underline"
+              className="font-medium text-brand-navy underline-offset-4 hover:underline"
               onClick={() => void handleSignIn()}
             >
               Sign in now
             </button>
           </p>
-        </CardContent>
-      </Card>
+        </div>
+      </>
     )
   }
 
   return (
-    <Card>
-      <CardHeader className="text-center">
-        <AuthCardBrand />
-        <CardTitle className="text-xl">Create your account</CardTitle>
-        <CardDescription>
-          Enter your account details. You will confirm your email before signing
-          in.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form
-          onSubmit={(event) => void handleSubmit(event)}
-          className="flex flex-col gap-5"
-        >
+    <>
+      <div className="mb-6 text-center">
+        <p className="text-xs font-semibold tracking-[0.12em] text-brand-orange uppercase">
+          Get started
+        </p>
+        <h1 className="mt-2 font-heading text-2xl font-semibold tracking-tight">
+          Create your account
+        </h1>
+        <p className="mt-2 text-sm leading-6 text-muted-foreground">
+          Enter your account details. You will confirm your email before signing in.
+        </p>
+      </div>
+      <form
+        onSubmit={(event) => void handleSubmit(event)}
+        className="flex flex-col gap-5"
+      >
           <FieldGroup>
             <div className="grid gap-4 sm:grid-cols-2">
               <Field data-invalid={Boolean(errors.firstName)}>
@@ -287,7 +280,7 @@ export function RegisterPage() {
           <Button
             type="submit"
             size="lg"
-            className="w-full"
+            className="w-full bg-brand-orange text-white hover:bg-brand-orange/90"
             disabled={isSubmitting}
           >
             {isSubmitting ? "Creating account..." : "Create account"}
@@ -296,13 +289,12 @@ export function RegisterPage() {
             Already have an account?{" "}
             <Link
               to="/login"
-              className="font-medium text-foreground underline-offset-4 hover:underline"
+              className="font-medium text-brand-navy underline-offset-4 hover:underline"
             >
               Sign in
             </Link>
           </p>
         </form>
-      </CardContent>
-    </Card>
+    </>
   )
 }

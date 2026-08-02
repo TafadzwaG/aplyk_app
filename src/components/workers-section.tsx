@@ -186,7 +186,7 @@ export function WorkersSection() {
     <section id="workers" className="relative scroll-mt-20 overflow-hidden border-y py-24 sm:py-32">
       <WorkersVectorBackground />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="landing-container relative z-10">
         <div className="grid items-start gap-12 lg:grid-cols-[minmax(280px,0.85fr)_minmax(0,1.15fr)] lg:gap-14">
           <Reveal delay={80} className="order-2 lg:order-1">
             <div className="flex flex-col gap-4">

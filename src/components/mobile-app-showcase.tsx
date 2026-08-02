@@ -191,7 +191,7 @@ export function MobileAppShowcase() {
 
   return (
     <section id="mobile-app" className="scroll-mt-20 overflow-hidden border-b py-20 sm:py-28">
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="landing-container relative">
         <div
           className="pointer-events-none absolute -top-24 right-0 size-72 rounded-full bg-brand-orange/10 blur-3xl"
           aria-hidden="true"
