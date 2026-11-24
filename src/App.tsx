@@ -1,3 +1,4 @@
+import { AssistantPage } from "@/pages/assistant"
 import { Toaster } from "@/components/ui/sonner"
 import { RequireAuth } from "@/components/require-auth"
 import { RequirePlatformAdmin } from "@/components/require-platform-admin"
@@ -78,6 +79,9 @@ export default function App() {
     switch (pathname) {
       case "/":
         page = <WelcomePage />
+        break
+      case "/assistant":
+        page = <RequireAuth><AppLayout><AssistantPage /></AppLayout></RequireAuth>
         break
       case "/dashboard":
         page = (

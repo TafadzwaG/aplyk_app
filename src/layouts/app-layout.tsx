@@ -1,4 +1,4 @@
-import { CalendarPlusIcon } from "lucide-react"
+import { CalendarPlusIcon, SparklesIcon } from "lucide-react"
 import type { ReactNode } from "react"
 
 import { AppSidebar } from "@/components/app-sidebar"
@@ -15,6 +15,7 @@ import { Link, useLocation } from "@/lib/router"
 
 const pageTitles: Record<string, string> = {
   "/dashboard": "Dashboard",
+  "/assistant": "Assistant",
   "/locations": "Locations",
   "/job-profiles": "Job profiles",
   "/team": "Team",
@@ -52,11 +53,12 @@ export function AppLayout({ children }: { children: ReactNode }) {
           <h1 className="truncate text-sm font-medium">{pageTitle}</h1>
           <div className="ml-auto flex items-center gap-2">
             <ContextSwitcher />
+            <Button variant="ghost" size="sm" asChild><Link to="/assistant"><SparklesIcon /><span className="sr-only sm:not-sr-only">Assistant</span></Link></Button>
             <ThemeToggle />
             <Button size="sm" asChild>
               <Link to="/shifts">
                 <CalendarPlusIcon data-icon="inline-start" />
-                Create a shift
+                <span className="sr-only sm:not-sr-only">Create a shift</span>
               </Link>
             </Button>
           </div>
